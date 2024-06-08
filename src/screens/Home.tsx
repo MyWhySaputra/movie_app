@@ -8,25 +8,29 @@ const movieLists: MovieListProps[] = [
     title: 'Now Playing in Theater',
     path: 'movie/now_playing?language=en-US&page=1',
     coverType: 'backdrop',
+    navigation: undefined
   },
   {
     title: 'Upcoming Movies',
     path: 'movie/upcoming?language=en-US&page=1',
     coverType: 'poster',
+    navigation: undefined
   },
   {
     title: 'Top Rated Movies',
     path: 'movie/top_rated?language=en-US&page=1',
     coverType: 'poster',
+    navigation: undefined
   },
   {
     title: 'Popular Movies',
     path: 'movie/popular?language=en-US&page=1',
     coverType: 'poster',
+    navigation: undefined
   },
 ]
 
-const Home = (): JSX.Element => {
+const Home = ({ navigation }: any): JSX.Element => {
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -36,6 +40,7 @@ const Home = (): JSX.Element => {
             path={movieList.path}
             coverType={movieList.coverType}
             key={movieList.title}
+            navigation={navigation} // Menambahkan prop navigation
           />
         ))}
         <StatusBar translucent={false} />

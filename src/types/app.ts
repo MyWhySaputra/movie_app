@@ -2,6 +2,7 @@ export interface MovieListProps {
   title: string
   path: string
   coverType: 'poster' | 'backdrop'
+  navigation: any
 }
 
 export interface Movie {
@@ -12,7 +13,7 @@ export interface Movie {
   original_title: string
   overview: string
   popularity: number
-  poster_path: number
+  poster_path: string
   original_language: string
   production_companies: {
     id: number
