@@ -6,16 +6,20 @@ import {
   ActivityIndicator,
   ImageBackground,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import MovieList from '../components/movies/MovieList'
 import { API_ACCESS_TOKEN } from '@env'
 import { LinearGradient } from 'expo-linear-gradient'
 import { FontAwesome } from '@expo/vector-icons'
 
-const MovieDetail = ({ route }: any): JSX.Element => {
+const MovieDetail = ({ route, navigation }: any): JSX.Element => {
   const { id } = route.params
   const [movie, setMovie] = useState<any>(null)
   const [loading, setLoading] = useState(true)
+  const [isFavorite, setIsFavorite] = useState(false)
+  const [isRefreshing, setIsRefreshing] = useState(false)
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -43,6 +47,71 @@ const MovieDetail = ({ route }: any): JSX.Element => {
 
     fetchMovieDetails()
   }, [id])
+
+  useEffect(() => {
+    const checkFavoriteStatus = async () => {
+      const favoriteStatus = await checkIsFavorite(id)
+      setIsFavorite(favoriteStatus)
+    }
+
+    checkFavoriteStatus()
+  }, [id])
+
+  const addFavorite = async (movie: any): Promise<void> => {
+    try {
+      const initialData: string | null =
+        await AsyncStorage.getItem('@FavoriteList')
+      let favMovieList: any[] = initialData ? JSON.parse(initialData) : []
+      favMovieList = [...favMovieList, movie]
+      await AsyncStorage.setItem('@FavoriteList', JSON.stringify(favMovieList))
+      setIsFavorite(true)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const removeFavorite = async (id: number): Promise<void> => {
+    try {
+      const initialData: string | null =
+        await AsyncStorage.getItem('@FavoriteList')
+      if (initialData !== null) {
+        const favMovieList: any[] = JSON.parse(initialData)
+        const updatedList = favMovieList.filter((movie: any) => movie.id !== id)
+        await AsyncStorage.setItem('@FavoriteList', JSON.stringify(updatedList))
+        setIsFavorite(false)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const checkIsFavorite = async (id: number): Promise<boolean> => {
+    try {
+      const initialData: string | null =
+        await AsyncStorage.getItem('@FavoriteList')
+      if (initialData !== null) {
+        const favMovieList: any[] = JSON.parse(initialData)
+        return favMovieList.some((movie: any) => movie.id === id)
+      }
+      return false
+    } catch (error) {
+      console.log(error)
+      return false
+    }
+  }
+
+  const toggleFavorite = () => {
+    if (isFavorite) {
+      removeFavorite(movie.id)
+    } else {
+      addFavorite(movie)
+    }
+    setIsRefreshing(true)
+    setTimeout(() => {
+      setIsRefreshing(false)
+      navigation.goBack()
+    }, 1000)
+  }
 
   if (loading) {
     return (
@@ -79,6 +148,17 @@ const MovieDetail = ({ route }: any): JSX.Element => {
           <View style={styles.ratingContainer}>
             <FontAwesome name="star" size={16} color="yellow" />
             <Text style={styles.rating}>{movie.vote_average.toFixed(1)}</Text>
+            <TouchableOpacity
+              onPress={toggleFavorite}
+              style={styles.favoriteButton}
+              disabled={isRefreshing}
+            >
+              <FontAwesome
+                name={isFavorite ? 'heart' : 'heart-o'}
+                size={24}
+                color={'crimson'}
+              />
+            </TouchableOpacity>
           </View>
         </LinearGradient>
       </ImageBackground>
@@ -92,7 +172,9 @@ const MovieDetail = ({ route }: any): JSX.Element => {
             </View>
             <View style={styles.info}>
               <Text style={styles.label}>Release Date</Text>
-              <Text style={styles.value}>{new Date(movie.release_date).toDateString()}</Text>
+              <Text style={styles.value}>
+                {new Date(movie.release_date).toDateString()}
+              </Text>
             </View>
           </View>
           <View style={styles.infoColumn}>
@@ -155,6 +237,9 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     fontSize: 16,
   },
+  favoriteButton: {
+    marginLeft: 'auto',
+  },
   detailsContainer: {
     padding: 16,
   },
@@ -176,12 +261,12 @@ const styles = StyleSheet.create({
   label: {
     fontWeight: 'bold',
   },
+  value: {
+    marginBottom: 8,
+  },
   errorText: {
     fontSize: 18,
     color: 'red',
-  },
-  value: {
-    marginBottom: 8,
   },
 })
 
