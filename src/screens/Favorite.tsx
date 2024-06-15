@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useFocusEffect } from '@react-navigation/native'
 import MovieItem from '../components/movies/MovieItem'
@@ -26,7 +26,7 @@ const Favorite = (): JSX.Element => {
   )
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       {favoriteMovies.length > 0 ? (
         <View style={styles.movieList}>
           {favoriteMovies.map((item) => (
@@ -41,7 +41,7 @@ const Favorite = (): JSX.Element => {
       ) : (
         <Text style={styles.noFavoritesText}>No favorite movies found.</Text>
       )}
-    </View>
+    </ScrollView>
   )
 }
 
