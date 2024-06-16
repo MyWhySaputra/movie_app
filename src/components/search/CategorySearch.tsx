@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Alert,
-  Button,
-} from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native'
 import { API_ACCESS_TOKEN } from '@env'
 import MovieItem from '../movies/MovieItem'
 
@@ -68,7 +61,6 @@ const CategorySearch = () => {
     <View style={styles.container}>
       {selectedGenre ? (
         <>
-          <Button title="Back to Categories" onPress={handleBack} />
           <View style={styles.movieList}>
             {movies.map((movie) => (
               <MovieItem
@@ -79,6 +71,9 @@ const CategorySearch = () => {
               />
             ))}
           </View>
+          <TouchableOpacity style={styles.buttonBack} onPress={handleBack}>
+            <Text style={styles.buttonText}>Back to Categories</Text>
+          </TouchableOpacity>
         </>
       ) : (
         <>
@@ -105,27 +100,41 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 16,
-    flex: 1,
   },
   text: {
     fontSize: 20,
     color: '#333',
   },
+  buttonText: {
+    color: 'white',
+  },
+  buttonBack: {
+    marginTop: 20,
+    backgroundColor: '#8978A4',
+    borderRadius: 100,
+    padding: 10,
+    marginBottom: 10,
+  },
   buttonContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginTop: 10,
+    justifyContent: 'space-between',
+    width: '100%',
   },
   button: {
     backgroundColor: '#DDDDDD',
     padding: 10,
-    margin: 5,
-    borderRadius: 5,
+    borderRadius: 8,
+    width: '48%',
+    margin: '1%',
+    alignItems: 'center',
   },
   movieList: {
-    marginTop: 20,
+    marginTop: 10,
     flexDirection: 'row',
     flexWrap: 'wrap',
+    justifyContent: 'center',
     gap: 10,
   },
 })

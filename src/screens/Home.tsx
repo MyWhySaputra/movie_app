@@ -40,7 +40,7 @@ const Home = ({ navigation }: any): JSX.Element => {
             path={movieList.path}
             coverType={movieList.coverType}
             key={movieList.title}
-            navigation={navigation} // Menambahkan prop navigation
+            navigation={navigation}
           />
         ))}
         <StatusBar translucent={false} />

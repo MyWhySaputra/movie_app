@@ -48,6 +48,7 @@ const MovieItem = ({ movie, size, coverType }: MovieItemProps): JSX.Element => {
 const styles = StyleSheet.create({
   backgroundImage: {
     marginRight: 4,
+    marginLeft: 4,
   },
   backgroundImageStyle: {
     borderRadius: 8,

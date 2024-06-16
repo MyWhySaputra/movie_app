@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
   movieList: {
     flexDirection: 'row',
     flexWrap: 'wrap',
+    justifyContent: 'flex-start',
     gap: 10,
   },
   noFavoritesText: {
