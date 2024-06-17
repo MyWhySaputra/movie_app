@@ -34,7 +34,6 @@ const KeywordSearch = (): JSX.Element => {
     )
       .then((response) => response.json())
       .then((response) => {
-        console.log(response)
         setMovies(response.results)
         setLoading(false)
       })
