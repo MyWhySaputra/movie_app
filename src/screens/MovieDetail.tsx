@@ -13,10 +13,11 @@ import MovieList from '../components/movies/MovieList'
 import { API_ACCESS_TOKEN } from '@env'
 import { LinearGradient } from 'expo-linear-gradient'
 import { FontAwesome } from '@expo/vector-icons'
+import type { MovieDetailProps, Movie } from '../types/app'
 
-const MovieDetail = ({ route, navigation }: any): JSX.Element => {
+const MovieDetail = ({ route, navigation }: MovieDetailProps) => {
   const { id } = route.params
-  const [movie, setMovie] = useState<any>(null)
+  const [movie, setMovie] = useState<Movie | null>(null)
   const [loading, setLoading] = useState(true)
   const [isFavorite, setIsFavorite] = useState(false)
   const [isRefreshing, setIsRefreshing] = useState(false)
@@ -57,11 +58,11 @@ const MovieDetail = ({ route, navigation }: any): JSX.Element => {
     checkFavoriteStatus()
   }, [id])
 
-  const addFavorite = async (movie: any): Promise<void> => {
+  const addFavorite = async (movie: Movie): Promise<void> => {
     try {
       const initialData: string | null =
         await AsyncStorage.getItem('@FavoriteList')
-      let favMovieList: any[] = initialData ? JSON.parse(initialData) : []
+      let favMovieList: Movie[] = initialData ? JSON.parse(initialData) : []
       favMovieList = [...favMovieList, movie]
       await AsyncStorage.setItem('@FavoriteList', JSON.stringify(favMovieList))
       setIsFavorite(true)
@@ -75,8 +76,8 @@ const MovieDetail = ({ route, navigation }: any): JSX.Element => {
       const initialData: string | null =
         await AsyncStorage.getItem('@FavoriteList')
       if (initialData !== null) {
-        const favMovieList: any[] = JSON.parse(initialData)
-        const updatedList = favMovieList.filter((movie: any) => movie.id !== id)
+        const favMovieList: Movie[] = JSON.parse(initialData)
+        const updatedList = favMovieList.filter((movie: Movie) => movie.id !== id)
         await AsyncStorage.setItem('@FavoriteList', JSON.stringify(updatedList))
         setIsFavorite(false)
       }
@@ -90,8 +91,8 @@ const MovieDetail = ({ route, navigation }: any): JSX.Element => {
       const initialData: string | null =
         await AsyncStorage.getItem('@FavoriteList')
       if (initialData !== null) {
-        const favMovieList: any[] = JSON.parse(initialData)
-        return favMovieList.some((movie: any) => movie.id === id)
+        const favMovieList: Movie[] = JSON.parse(initialData)
+        return favMovieList.some((movie: Movie) => movie.id === id)
       }
       return false
     } catch (error) {
@@ -101,9 +102,9 @@ const MovieDetail = ({ route, navigation }: any): JSX.Element => {
   }
 
   const toggleFavorite = () => {
-    if (isFavorite) {
+    if (isFavorite && movie) {
       removeFavorite(movie.id)
-    } else {
+    } else if (movie) {
       addFavorite(movie)
     }
     setIsRefreshing(true)
@@ -193,7 +194,6 @@ const MovieDetail = ({ route, navigation }: any): JSX.Element => {
         title="Recommendations"
         path={`movie/${id}/recommendations`}
         coverType="poster"
-        navigation={null}
       />
     </ScrollView>
   )

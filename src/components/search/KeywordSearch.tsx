@@ -10,10 +10,11 @@ import {
 } from 'react-native'
 import { API_ACCESS_TOKEN } from '@env'
 import MovieItem from '../movies/MovieItem'
+import type { Movie } from '../../types/app'
 
-const KeywordSearch = (): JSX.Element => {
+const KeywordSearch = () => {
   const [keyword, setKeyword] = useState<string>('')
-  const [movies, setMovies] = useState<any[]>([])
+  const [movies, setMovies] = useState<Movie[]>([])
   const [searched, setSearched] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
 
@@ -37,8 +38,7 @@ const KeywordSearch = (): JSX.Element => {
         setMovies(response.results)
         setLoading(false)
       })
-      .catch((err) => {
-        console.error(err)
+      .catch(() => {
         setLoading(false)
         Alert.alert('Error', 'Failed to fetch movies')
       })
@@ -57,7 +57,7 @@ const KeywordSearch = (): JSX.Element => {
         <Text style={styles.buttonText}>Search</Text>
       </TouchableOpacity>
       {loading ? (
-        <ActivityIndicator size="large" color="#8978A4" />
+        <ActivityIndicator size="large" color="#8978A4" style={{ marginTop: 20 }} />
       ) : movies.length > 0 ? (
         <View style={styles.movieList}>
           {movies.map((item) => (

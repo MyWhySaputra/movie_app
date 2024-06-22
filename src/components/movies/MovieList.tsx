@@ -16,7 +16,7 @@ const coverImageSize = {
   },
 }
 
-const MovieList = ({ title, path, coverType }: MovieListProps): JSX.Element => {
+const MovieList = ({ title, path, coverType }: MovieListProps) => {
   const [movies, setMovies] = useState<Movie[]>([])
 
   useEffect(() => {

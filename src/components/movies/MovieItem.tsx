@@ -11,7 +11,7 @@ import { FontAwesome } from '@expo/vector-icons'
 import { LinearGradient } from 'expo-linear-gradient'
 import type { MovieItemProps } from '../../types/app'
 
-const MovieItem = ({ movie, size, coverType }: MovieItemProps): JSX.Element => {
+const MovieItem = ({ movie, size, coverType }: MovieItemProps) => {
   const navigation = useNavigation()
   const pushAction = StackActions.push('MovieDetail', { id: movie.id })
   return (

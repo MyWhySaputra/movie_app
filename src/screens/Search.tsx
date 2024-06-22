@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-nati
 import KeywordSearch from '../components/search/KeywordSearch'
 import CategorySearch from '../components/search/CategorySearch'
 
-const Search = (): JSX.Element => {
+const Search = () => {
   const [selectedBar, setSelectedBar] = useState<string>('keyword')
 
   return (

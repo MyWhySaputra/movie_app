@@ -2,7 +2,6 @@ export interface MovieListProps {
   title: string
   path: string
   coverType: 'poster' | 'backdrop'
-  navigation: any
 }
 
 export interface Movie {
@@ -45,4 +44,9 @@ export interface MovieItemProps {
   movie: Movie
   size: { width: number; height: number }
   coverType: 'poster' | 'backdrop'
+}
+
+export interface MovieDetailProps {
+  route: any
+  navigation: any
 }

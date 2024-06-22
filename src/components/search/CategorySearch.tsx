@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native'
 import { API_ACCESS_TOKEN } from '@env'
 import MovieItem from '../movies/MovieItem'
+import type { Movie } from '../../types/app'
 
 const CategorySearch = () => {
   const [genres, setGenres] = useState<{ id: number; name: string }[]>([])
   const [selectedGenre, setSelectedGenre] = useState<number | null>(null)
-  const [movies, setMoviesResult] = useState<any[]>([])
+  const [movies, setMoviesResult] = useState<Movie[]>([])
 
   useEffect(() => {
     fetchGenres()

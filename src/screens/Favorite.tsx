@@ -3,9 +3,10 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useFocusEffect } from '@react-navigation/native'
 import MovieItem from '../components/movies/MovieItem'
+import type { Movie } from '../types/app'
 
-const Favorite = (): JSX.Element => {
-  const [favoriteMovies, setFavoriteMovies] = useState<any[]>([])
+const Favorite = () => {
+  const [favoriteMovies, setFavoriteMovies] = useState<Movie[]>([])
 
   const fetchFavoriteMovies = async () => {
     try {

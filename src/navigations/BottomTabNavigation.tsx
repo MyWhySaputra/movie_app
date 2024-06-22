@@ -7,7 +7,7 @@ import SearchStackNavigation from './SearchStackNavigation'
 
 const Tab = createBottomTabNavigator()
 
-const BottomTabNavigator = (): JSX.Element => (
+const BottomTabNavigator = () => (
   <Tab.Navigator>
     <Tab.Screen
       name="HomeTab"
