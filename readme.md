@@ -31,6 +31,8 @@ npm run web
 
 ## API yang di gunakan
 
+- **Semua menggunakan API TMDB, berikut list nya**
+
 - Film yang sekarang diputar
 ```
 https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1
@@ -110,10 +112,9 @@ https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=fa
   - **FontAwesome**: Ikon dari FontAwesome yang digunakan dalam aplikasi Expo.
 
 - **expo-linear-gradient**
-  - **LinearGradient**: Untuk membuat gradien linear.
+  - **LinearGradient**: Untuk membuat efek transisi warna yang halus di latar belakang komponen.
 
-- **@env**
-  - **API_ACCESS_TOKEN**: Mengimpor token akses API dari lokal.
+- **@env**: Membaca file .env
 
 - **@react-navigation/bottom-tabs**
   - **createBottomTabNavigator**: Untuk membuat navigasi tab bawah.
@@ -128,7 +129,7 @@ https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=fa
 
 - Memahami kebutuhan project dan desain aplikasi.
 - Menginstal semua dependensi yang diperlukan.
-- Mengintegrasikan API The Movie Database (TMDB) untuk mendapatkan data film.
+- Mengintegrasikan API TMDB untuk mendapatkan data film.
 - Membuat komponen untuk menampilkan daftar film dan detail film.
 - Mengimplementasikan navigasi antara layar menggunakan react-navigation.
 - Menambahkan fitur pencarian dan favorit.
