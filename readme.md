@@ -17,21 +17,26 @@ npm run web
 
 # Perkenalan
 
-- Nama saya Mochamad Wahyu Saputra
+- M. Wahyu Saputra
 
 # Tujuan
 
 - Untuk memenuhi project tugas akhir program FGA Mobile App Development with React Native
+- Mempelajari dan mengimplementasikan teknologi React Native dalam pengembangan aplikasi mobile.
+- Mengembangkan aplikasi yang dapat memberikan informasi up-to-date mengenai film-film terkini.
+- Meningkatkan kemampuan dalam mengintegrasikan API eksternal ke dalam aplikasi mobile.
+- Menciptakan aplikasi yang user-friendly dengan fitur pencarian dan penyimpanan favorit.
 
 # Fitur
 
-- Home, Search dan Favorite
+- **Home**: Menampilkan daftar film yang sedang diputar, yang akan tayang, terpopuler, dan dengan nilai tertinggi.
+- **Search**: Memungkinkan pengguna untuk mencari film berdasarkan kata kunci atau kategori.
+- **Favorite**: Menyimpan daftar film favorit pengguna.
+- **Detail Film**: Menampilkan informasi detail tentang film yang dipilih, termasuk rekomendasi film terkait.
 
 # Spesifikasi
 
-## API yang di gunakan
-
-- **Semua menggunakan API TMDB, berikut list nya**
+## API yang di gunakan **(API TMDB)**
 
 - Film yang sekarang diputar
 ```
@@ -77,7 +82,7 @@ https://image.tmdb.org/t/p/w500${movie.poster_path}
 https://api.themoviedb.org/3/search/movie?query=${keyword}&page=1
 ```
 
-- Untuk list genre film yang ada
+- Untuk list kategori genre film yang ada
 ```
 https://api.themoviedb.org/3/genre/movie/list?language=en
 ```
@@ -138,7 +143,9 @@ https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=fa
 
 # Kendala yang dihadapi
 
-- Tidak ada kendala yang berarti
+- **Kompatibilitas Perangkat**: Menghadapi beberapa masalah kompatibilitas saat menguji aplikasi di berbagai perangkat dan platform, yang membutuhkan penyesuaian tambahan.
+
+- **Pemahaman Teknologi Baru**: Meskipun tidak ada kendala yang besar, mempelajari dan mengimplementasikan beberapa teknologi baru seperti AsyncStorage yang membutuhkan waktu dan usaha ekstra.
 
 # Kesimpulan
 
