@@ -60,8 +60,7 @@ const MovieDetail = ({ route, navigation }: MovieDetailProps) => {
 
   const addFavorite = async (movie: Movie): Promise<void> => {
     try {
-      const initialData: string | null =
-        await AsyncStorage.getItem('@FavoriteList')
+      const initialData: string | null = await AsyncStorage.getItem('@FavoriteList')
       let favMovieList: Movie[] = initialData ? JSON.parse(initialData) : []
       favMovieList = [...favMovieList, movie]
       await AsyncStorage.setItem('@FavoriteList', JSON.stringify(favMovieList))
@@ -73,8 +72,7 @@ const MovieDetail = ({ route, navigation }: MovieDetailProps) => {
 
   const removeFavorite = async (id: number): Promise<void> => {
     try {
-      const initialData: string | null =
-        await AsyncStorage.getItem('@FavoriteList')
+      const initialData: string | null = await AsyncStorage.getItem('@FavoriteList')
       if (initialData !== null) {
         const favMovieList: Movie[] = JSON.parse(initialData)
         const updatedList = favMovieList.filter((movie: Movie) => movie.id !== id)
@@ -88,8 +86,7 @@ const MovieDetail = ({ route, navigation }: MovieDetailProps) => {
 
   const checkIsFavorite = async (id: number): Promise<boolean> => {
     try {
-      const initialData: string | null =
-        await AsyncStorage.getItem('@FavoriteList')
+      const initialData: string | null = await AsyncStorage.getItem('@FavoriteList')
       if (initialData !== null) {
         const favMovieList: Movie[] = JSON.parse(initialData)
         return favMovieList.some((movie: Movie) => movie.id === id)
