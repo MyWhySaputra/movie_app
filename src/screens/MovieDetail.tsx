@@ -127,15 +127,17 @@ const MovieDetail = ({ route, navigation }: MovieDetailProps) => {
     )
   }
 
+  const Source = movie.backdrop_path
+    ? { uri: `https://image.tmdb.org/t/p/w500${movie.backdrop_path}` }
+    : require('../../assets/null.jpg')
+
   return (
     <ScrollView style={styles.container}>
       <ImageBackground
         resizeMode="cover"
         style={styles.backdrop}
         imageStyle={styles.backgroundImageStyle}
-        source={{
-          uri: `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`,
-        }}
+        source={Source}
       >
         <LinearGradient
           colors={['#00000000', 'rgba(0, 0, 0, 0.7)']}

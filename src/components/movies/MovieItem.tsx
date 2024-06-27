@@ -14,20 +14,24 @@ import type { MovieItemProps } from '../../types/app'
 const MovieItem = ({ movie, size, coverType }: MovieItemProps) => {
   const navigation = useNavigation()
   const pushAction = StackActions.push('MovieDetail', { id: movie.id })
+
+  const imageUri =
+    coverType === 'backdrop' ? movie.backdrop_path : movie.poster_path
+  const source = imageUri
+    ? { uri: `https://image.tmdb.org/t/p/w500${imageUri}` }
+    : require('../../../assets/null.jpg')
+
   return (
     <TouchableOpacity
       onPress={() => {
         navigation.dispatch(pushAction)
-      }}>
+      }}
+    >
       <ImageBackground
         resizeMode="cover"
         style={[size, styles.backgroundImage]}
         imageStyle={styles.backgroundImageStyle}
-        source={{
-          uri: `https://image.tmdb.org/t/p/w500${
-            coverType === 'backdrop' ? movie.backdrop_path : movie.poster_path
-          }`,
-        }}
+        source={source}
       >
         <LinearGradient
           colors={['#00000000', 'rgba(0, 0, 0, 0.7)']}
@@ -72,7 +76,7 @@ const styles = StyleSheet.create({
   rating: {
     color: 'yellow',
     fontWeight: '700',
-  }
+  },
 })
 
 export default MovieItem

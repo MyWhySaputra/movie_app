@@ -10,8 +10,7 @@ const Favorite = () => {
 
   const fetchFavoriteMovies = async () => {
     try {
-      const initialData: string | null =
-        await AsyncStorage.getItem('@FavoriteList')
+      const initialData: string | null = await AsyncStorage.getItem('@FavoriteList')
       if (initialData !== null) {
         setFavoriteMovies(JSON.parse(initialData))
       }
