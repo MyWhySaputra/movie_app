@@ -1,0 +1,26 @@
+{
+  "cli": {
+    "version": ">= 10.2.0"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal"
+    },
+    "movie-app": {
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "API_ACCESS_TOKEN":"eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzkzZjIwZTcxNDQ5OGI0MzAxZDdiNzc2ZTdiMDk1ZCIsInN1YiI6IjY2NWRlZjJmMDIwMWFkMjExNjFmNzY3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.E9sOGP0PRGez9Qzdf61ntyNczD601fBLIcfaCJi7q5o"
+      }
+    },
+    "production": {}
+  },
+  "submit": {
+    "production": {}
+  }
+}

@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "movie_app",
-    "slug": "movie_app",
+    "slug": "movie-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,10 +18,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.mywahyusaputra.movieapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "009bec79-a527-4e44-a08d-ba3651e03ce0"
+      }
+    },
+    "owner": "mywahyusaputra"
   }
 }
